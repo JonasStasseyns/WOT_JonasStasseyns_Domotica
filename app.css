@@ -1,0 +1,21 @@
+.wrapper {
+  width: 100vw;
+  padding: 2vw;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+}
+
+.btn-group {
+  border: 1px solid black;
+  padding: 1vw;
+}
+
+.btn {
+  border-radius: 0 !important;
+  padding: 1vw;
+  background-color: #fff9c4;
+  border: 0;
+  color: #212121;
+}
+
+/*# sourceMappingURL=app.css.map */
