@@ -9,11 +9,36 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const wrapper = document.querySelector('.wrapper');
+
+db.collection("devices").get().then((devices) => {
+    devices.forEach((doc) => {
+        const button = document.createElement('button')
+        button.classList.add('btn')
+        button.id = doc.id
+        wrapper.appendChild(button)
+    });
+});
+
+
+
+
+
 
 const btnList = document.querySelectorAll('.btn')
 
 btnList.forEach((btn) => {
     btn.addEventListener('click', (evt) => {
-
+        db.collection("devices").doc(btn.id).update({
+            status: false
+        })
+            .then(function() {
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
     })
 })

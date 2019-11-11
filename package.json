@@ -1,0 +1,19 @@
+{
+  "name": "wot_jonasstasseyns_domotica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "deploy": "firebase deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonasStasseyns/WOT_JonasStasseyns_Domotica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonasStasseyns/WOT_JonasStasseyns_Domotica/issues"
+  },
+  "homepage": "https://github.com/JonasStasseyns/WOT_JonasStasseyns_Domotica#readme"
+}
