@@ -2,7 +2,7 @@
   "name": "wot_jonasstasseyns_domotica",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "assets/js/app.js",
   "scripts": {
     "deploy": "firebase deploy"
   },

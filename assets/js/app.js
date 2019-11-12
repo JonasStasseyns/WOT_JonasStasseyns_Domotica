@@ -52,8 +52,8 @@ loadConditions = () => {
     db.collection('conditions').doc('conditions').get().then((doc) => {
         console.log(doc.data())
         const data = doc.data()
-        tempContainer.innerHTML = Math.round(data.temperature)
-        humContainer.innerHTML = Math.round(data.humidity)
+        tempContainer.innerHTML = Math.round(data.temperature) + '°C'
+        humContainer.innerHTML = Math.round(data.humidity) + '%'
     });
 }
 
