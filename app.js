@@ -61,8 +61,9 @@ document.querySelector('.alert').addEventListener('click', () => {
     db.collection('devices').get().then((docs) => {
         docs.forEach((doc) => {
             console.log(doc.id)
-            db.collection('devices').doc(doc.id).update({ status: !doc.data().status })
+            db.collection('devices').doc(doc.id).update({ status: false })
         })
+        loadControlPanel()
     });
 })
 
