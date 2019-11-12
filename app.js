@@ -12,33 +12,59 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 const wrapper = document.querySelector('.wrapper');
+const tempContainer = document.querySelector('.temp-data');
+const humContainer = document.querySelector('.hum-data');
 
-db.collection("devices").get().then((devices) => {
-    devices.forEach((doc) => {
-        const button = document.createElement('button')
-        button.classList.add('btn')
-        button.id = doc.id
-        wrapper.appendChild(button)
-    });
-});
-
-
-
-
-
-
-const btnList = document.querySelectorAll('.btn')
-
-btnList.forEach((btn) => {
-    btn.addEventListener('click', (evt) => {
-        db.collection("devices").doc(btn.id).update({
-            status: false
-        })
-            .then(function() {
-                console.log("Document successfully written!");
+loadControlPanel = () => {
+    db.collection("devices").get().then((devices) => {
+        wrapper.innerHTML = ''
+        devices.forEach((doc) => {
+            const button = document.createElement('button')
+            const statusIcon = document.createElement('div')
+            statusIcon.classList.add((doc.data().status) ? 'on' : 'off')
+            button.classList.add('btn')
+            button.id = doc.id
+            button.innerHTML = '<h3 class="device-name">' + doc.data().device_name + '</h3>'
+            button.appendChild(statusIcon)
+            button.addEventListener('click', (evt) => {
+                console.log(doc.data().status)
+                console.log(!doc.data().status)
+                db.collection("devices").doc(doc.id).update({
+                    status: !doc.data().status
+                })
+                    .then(function () {
+                        console.log("Document successfully written!");
+                        loadControlPanel()
+                        loadConditions()
+                    })
+                    .catch(function (error) {
+                        console.error("Error writing document: ", error);
+                        loadControlPanel()
+                        loadConditions()
+                    });
             })
-            .catch(function(error) {
-                console.error("Error writing document: ", error);
-            });
-    })
+            wrapper.appendChild(button)
+        });
+    });
+}
+
+loadConditions = () => {
+    db.collection('conditions').doc('conditions').get().then((doc) => {
+        console.log(doc.data())
+        const data = doc.data()
+        tempContainer.innerHTML = Math.round(data.temperature)
+        humContainer.innerHTML = Math.round(data.humidity)
+    });
+}
+
+document.querySelector('.alert').addEventListener('click', () => {
+    db.collection('devices').get().then((docs) => {
+        docs.forEach((doc) => {
+            console.log(doc.id)
+            db.collection('devices').doc(doc.id).update({ status: !doc.data().status })
+        })
+    });
 })
+
+loadControlPanel()
+loadConditions()

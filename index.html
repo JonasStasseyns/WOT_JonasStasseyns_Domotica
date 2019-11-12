@@ -6,12 +6,23 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-
-<div class="wrapper">
-    <div class="btn-group">
-        <button class="btn btn-light" id="HLZFqO5iH6tEgOxz1qDu">Bedroom lights</button>
-        <button class="btn btn-light" id="living">Living Room</button>
+<h1 class="main-title">Home Control</h1>
+<div class="main-container">
+    <div class="temp-hum-container">
+        <h2>current conditions</h2>
+        <div class="conditions-data-container">
+            <h3>Temperature</h3>
+            <h4 class="temp-data"></h4>
+        </div>
+        <div class="conditions-data-container">
+            <h3>Humidity</h3>
+            <h4 class="hum-data"></h4>
+        </div>
     </div>
+    <div class="wrapper">
+
+    </div>
+    <div class="alert">ALERT</div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
